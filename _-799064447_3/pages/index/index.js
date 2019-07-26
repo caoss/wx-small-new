@@ -49,7 +49,6 @@ Page({
             url: 'http://119.23.253.207:9876/member/getCardQrCode?uuid=3d70935b88c943d8b3beca1195680aj8',
             header: defaultHeader,
             success: (res) => {
-                console.log('res',res.data.data.qrStr);
                 if(res.data.code==='0' && res.data && res.data.data &&res.data.data.qrStr){
                     ts({
                         width:220,
