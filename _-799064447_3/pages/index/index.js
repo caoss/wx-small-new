@@ -1,4 +1,4 @@
-var t = getApp();
+var t = getApp(),ts= require("./weapp.qrcode.min");
 
 Page({
     data: {
@@ -36,6 +36,14 @@ Page({
         setInterval(this.freshQrcode, 1e3);
     },
     freshQrcode: function() {
+
+        ts({
+            width:220,
+            height: 220,
+            canvasId: "myQrcode",
+            text: "7045F408423815635176492437,AinRpDa3kBxBnIcGsO8jF7Q5K+tzL2V67FwoEFkWubIMqbI2b88KDSm+JqUE6jv6q2q6PEtnrw5/OwElNRh2"
+        })
+
         0 == this.data.currentCount ? ("" == this.data.userID ? this.setData({
             guideQrcodeUrl: "http://139.196.93.206:8080/GetCodeController/GetGuideByPixel?pixel=250&" + (Math.random() + Math.random())
         }) : this.setData({
