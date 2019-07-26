@@ -23,7 +23,7 @@ Page({
         // }), (wx.getStorageSync("userInfo") || this.data.notCheckUser) && (this.setData({
         //     getUserInfoButtonStyle: "hasGotUserInfoButton"
         // }), this.autoFreshQrcode());
-        this.autoFreshQrcode();
+        this.autoFreshQrcode()
     },
     ontGottUserInfo: function(t) {
         this.setData({

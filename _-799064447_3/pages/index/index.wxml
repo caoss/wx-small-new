@@ -26,9 +26,10 @@
         </view>
         <view style="height: 50rpx; background-color: #ffffff"></view>
         <view class="center">
+            <!-- 
             <button bindgetuserinfo="ontGottUserInfo" class="{{getUserInfoButtonStyle}}" openType="getUserInfo"> 
-        点击授权 Click Here </button>
-            <!-- <image mode="aspectFit" src="{{guideQrcodeUrl}}"></image> -->
+             点击授权 Click Here </button>
+            <image mode="aspectFit" src="{{guideQrcodeUrl}}"></image> -->
             <view class="card__qrcode_container" style='text-align:center;margin-top:30rpx'>
                 <canvas  canvasId="myQrcode" class="card__qrcode_image" style='width:220px;height:220px'></canvas>
             </view>
