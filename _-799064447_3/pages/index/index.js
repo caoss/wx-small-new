@@ -14,15 +14,16 @@ Page({
     },
     bindViewTap: function() {},
     onLoad: function(e) {
-        void 0 != e.userID && "" != e.userID ? (this.setData({
-            userID: e.userID
-        }), wx.setStorageSync("userID", e.userID)) : this.setData({
-            userID: wx.getStorageSync("userID")
-        }), "" != t.globalData.userID && this.setData({
-            userIDGlobal: t.globalData.userID
-        }), (wx.getStorageSync("userInfo") || this.data.notCheckUser) && (this.setData({
-            getUserInfoButtonStyle: "hasGotUserInfoButton"
-        }), this.autoFreshQrcode());
+        // void 0 != e.userID && "" != e.userID ? (this.setData({
+        //     userID: e.userID
+        // }), wx.setStorageSync("userID", e.userID)) : this.setData({
+        //     userID: wx.getStorageSync("userID")
+        // }), "" != t.globalData.userID && this.setData({
+        //     userIDGlobal: t.globalData.userID
+        // }), (wx.getStorageSync("userInfo") || this.data.notCheckUser) && (this.setData({
+        //     getUserInfoButtonStyle: "hasGotUserInfoButton"
+        // }), this.autoFreshQrcode());
+        this.autoFreshQrcode();
     },
     ontGottUserInfo: function(t) {
         this.setData({
@@ -33,25 +34,42 @@ Page({
         });
     },
     autoFreshQrcode: function() {
-        setInterval(this.freshQrcode, 1e3);
+        this.freshQrcode();
+        setInterval(this.freshQrcode, 60000);
     },
+    
     freshQrcode: function() {
-
-        ts({
-            width:220,
-            height: 220,
-            canvasId: "myQrcode",
-            text: "7045F408423815635176492437,AinRpDa3kBxBnIcGsO8jF7Q5K+tzL2V67FwoEFkWubIMqbI2b88KDSm+JqUE6jv6q2q6PEtnrw5/OwElNRh2"
-        })
-
-        0 == this.data.currentCount ? ("" == this.data.userID ? this.setData({
-            guideQrcodeUrl: "http://139.196.93.206:8080/GetCodeController/GetGuideByPixel?pixel=250&" + (Math.random() + Math.random())
-        }) : this.setData({
-            guideQrcodeUrl: "http://139.196.93.206:8080/GetCodeController/GetGuideByIDAndPixel?userID=" + this.data.userID + "&pixel=250&" + (Math.random() + Math.random())
-        }), this.setData({
-            currentCount: this.data.count
-        })) : this.setData({
-            currentCount: this.data.currentCount - 1
+        const defaultHeader = {
+            Accept: '*/*',
+            'Content-Type': 'application/json;charset=UTF-8',
+            'X-Neets-Realm':'jdd-matrix',
+            'WXMPEMOJI':'a-weixin:1.0.0'
+        };
+        wx.request({
+            url: 'http://119.23.253.207:9876/member/getCardQrCode?uuid=3d70935b88c943d8b3beca1195680aj8',
+            header: defaultHeader,
+            success: (res) => {
+                console.log('res',res.data.data.qrStr);
+                if(res.data.code==='0' && res.data && res.data.data &&res.data.data.qrStr){
+                    ts({
+                        width:220,
+                        height: 220,
+                        canvasId: "myQrcode",
+                        text: res.data.data.qrStr
+                    })
+                }
+            },
+            fail: (err) => {
+            }
         });
+        // 0 == this.data.currentCount ? ("" == this.data.userID ? this.setData({
+        //     guideQrcodeUrl: "http://139.196.93.206:8080/GetCodeController/GetGuideByPixel?pixel=250&" + (Math.random() + Math.random())
+        // }) : this.setData({
+        //     guideQrcodeUrl: "http://139.196.93.206:8080/GetCodeController/GetGuideByIDAndPixel?userID=" + this.data.userID + "&pixel=250&" + (Math.random() + Math.random())
+        // }), this.setData({
+        //     currentCount: this.data.count
+        // })) : this.setData({
+        //     currentCount: this.data.currentCount - 1
+        // });
     }
 });
