@@ -1,0 +1,48 @@
+<view class="container">
+    <view style="root">
+        <view style="height: 100rpx"></view>
+        <view class="top">
+            <image mode="widthFix" src="../images/003.png"></image>
+            <text style="position: absolute; margin: -4% 0%; color:#c7aa81; font-size: 14px;">
+                可用积分
+            </text>
+            <view class="top">
+                <image mode="widthFix" src="../images/btbg.png" style="position: absolute; width:40%; margin:-4% 0%"></image>
+                <text style="position: absolute; margin: -9% 0%; color:#ffffff; font-size: 16px;">
+                全场商品95折
+            </text>
+                <view style="width: 100%; display: flex; align-items: flex-end; flex-direction: column;">
+                    <image mode="widthFix" src="../images/right_bt.png" style="position: absolute; width:15%; margin:-16% 0%"></image>
+                    <text style="position: absolute; margin: -20% -20rpx; color:#c7aa81; font-size: 14px;">
+                    转入>
+                </text>
+                </view>
+                <view style="display: flex; align-items: center; flex-direction: row; margin: -15%">
+                    <image mode="widthFix" src="../images/star.png" style="width: 40rpx;"></image>
+                    <image mode="widthFix" src="../images/star.png" style="width: 40rpx;"></image>
+                    <image mode="widthFix" src="../images/star.png" style="width: 40rpx;"></image>
+                </view>
+            </view>
+        </view>
+        <view style="height: 50rpx; background-color: #ffffff"></view>
+        <view class="center">
+            <button bindgetuserinfo="ontGottUserInfo" class="{{getUserInfoButtonStyle}}" openType="getUserInfo"> 
+        点击授权 Click Here </button>
+            <image mode="aspectFit" src="{{guideQrcodeUrl}}"></image>
+        </view>
+        <view class="bottom">
+            <image mode="widthFix" src="../images/001.png"></image>
+        </view>
+        <view style="height: 200rpx"></view>
+        <view class="lastTime">
+            <view class="lastTime1">
+                <text>剩余 </text>
+                <text>{{currentCount}}</text>
+                <text> 秒刷新</text>
+            </view>
+            <text>{{userID}}</text>
+            <text>{{userIDGlobal}}</text>
+        </view>
+        <view style="height: 10rpx"></view>
+    </view>
+</view>
